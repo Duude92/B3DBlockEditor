@@ -33,4 +33,9 @@
 
 *.db
 *.ipch
-
+*.tlog
+*.log
+*.pdb
+*.idb
+*.ilk
+*.pchast

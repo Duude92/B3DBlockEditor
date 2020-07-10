@@ -21,14 +21,14 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C94FB316-6B52-484A-9ECC-E46C4AB543F2}</ProjectGuid>
     <RootNamespace>MFCApplication1</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <Keyword>MFCProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -188,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddMat.h" />
+    <ClInclude Include="Block04.h" />
+    <ClInclude Include="Block05.h" />
+    <ClInclude Include="IBlock.h" />
     <ClInclude Include="MFCApplication1.h" />
     <ClInclude Include="MFCApplication1Dlg.h" />
     <ClInclude Include="Resource.h" />
@@ -196,6 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddMat.cpp" />
+    <ClCompile Include="Block04.cpp" />
+    <ClCompile Include="Block05.cpp" />
+    <ClCompile Include="IBlock.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />
     <ClCompile Include="MFCApplication1Dlg.cpp" />
     <ClCompile Include="stdafx.cpp">

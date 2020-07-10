@@ -5,10 +5,13 @@
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "включить stdafx.h до включения этого файла в PCH"
+#error "включить stdafx.h до включения этого файла в PCH"
 #endif
 
 #include "resource.h"		// основные символы
+#include "IBlock.h"
+#include "Block05.h"
+#include "Block04.h"
 
 
 // CMFCApplication1App:
@@ -20,11 +23,11 @@ class CMFCApplication1App : public CWinApp
 public:
 	CMFCApplication1App();
 
-// Переопределение
+	// Переопределение
 public:
 	virtual BOOL InitInstance();
 
-// Реализация
+	// Реализация
 
 	DECLARE_MESSAGE_MAP()
 };

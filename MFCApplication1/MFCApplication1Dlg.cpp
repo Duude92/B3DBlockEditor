@@ -170,7 +170,7 @@ void CMFCApplication1Dlg::ADD05()
 
 		char objName[32];
 
-		
+
 
 
 		dialog.m_text = L"Имя блока:";
@@ -187,7 +187,7 @@ void CMFCApplication1Dlg::ADD05()
 			input0.seekg(0, ios_base::end);
 			int fend = (int)input0.tellg();
 			input0.seekg(0, ios_base::beg);
-			char * text = new char[fend];
+			char* text = new char[fend];
 
 			int offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].start;//смещение первого блока
 
@@ -220,7 +220,7 @@ void CMFCApplication1Dlg::ADD05()
 			inputM.seekg(0, ios_base::end);
 			fend = (int)inputM.tellg();
 			inputM.seekg(0, ios_base::beg);
-			char * MainFile = new char[fend];
+			char* MainFile = new char[fend];
 			inputM.read(MainFile, fend);
 			ofstream tempFile(OPath, ios::binary);
 			tempFile.write(MainFile, fend);
@@ -352,9 +352,9 @@ HCURSOR CMFCApplication1Dlg::OnQueryDragIcon()
 void CMFCApplication1Dlg::OpenFile1()
 {
 	// TODO: добавьте свой код обработчика уведомлений
-	
+
 	bool ignoreNextSelChange = FALSE;
-	
+
 	CFileDialog fileDialogOpen(TRUE, NULL, L"*.b3d");
 	int result = fileDialogOpen.DoModal();
 
@@ -363,9 +363,9 @@ void CMFCApplication1Dlg::OpenFile1()
 	{
 		if (ignoreNextSelChange)
 		{
-		// Don't do anything, but make sure that the else block below will be executed
-		// again with the next (expected) call of this function.
-		ignoreNextSelChange = false;
+			// Don't do anything, but make sure that the else block below will be executed
+			// again with the next (expected) call of this function.
+			ignoreNextSelChange = false;
 		}
 		else
 		{
@@ -390,10 +390,10 @@ void CMFCApplication1Dlg::OpenFile1()
 		inputM.seekg(0, ios_base::end);
 		int fend = (int)inputM.tellg();
 		inputM.seekg(0, ios_base::beg);
-		char * MainFile = new char[fend];
+		char* MainFile = new char[fend];
 
 		inputM.read(MainFile, fend);
-		
+
 		inputM.close();
 
 		CString OPath;
@@ -404,7 +404,7 @@ void CMFCApplication1Dlg::OpenFile1()
 
 		OPath = (LPWSTR)(LPCWSTR)opathx;
 		OPath = OPath + L"b3d.temp1";
-		
+
 
 		ofstream tempFile(OPath, ios::binary);
 		tempFile.write(MainFile, fend);
@@ -423,7 +423,7 @@ void CMFCApplication1Dlg::OpenFile1()
 			}
 			else
 			{
-				getStr(&m_treeCtrl, OPath,&itemArr);
+				getStr(&m_treeCtrl, OPath, &itemArr);
 				op0 = TRUE;
 			}
 		}
@@ -431,7 +431,7 @@ void CMFCApplication1Dlg::OpenFile1()
 		{
 			CString msg;
 			msg.Format(_T("%S"), e.what());
-			MessageBox( msg, _T("B3D Error"), MB_OK);
+			MessageBox(msg, _T("B3D Error"), MB_OK);
 		}
 
 	}
@@ -475,12 +475,12 @@ void CMFCApplication1Dlg::OpenFile2()
 			if (op1)
 			{
 				m_treeCtrl1.DeleteAllItems();
-				getStr(&m_treeCtrl1, Path1,&itemArr1);
+				getStr(&m_treeCtrl1, Path1, &itemArr1);
 
 			}
 			else
 			{
-				getStr(&m_treeCtrl1, Path1,&itemArr1);
+				getStr(&m_treeCtrl1, Path1, &itemArr1);
 				op1 = TRUE;
 			}
 
@@ -517,7 +517,7 @@ void CMFCApplication1Dlg::ExportBlk()
 		input0.seekg(0, ios_base::end);
 		int fend = (int)input0.tellg();
 		input0.seekg(0, ios_base::beg);
-		char * text = new char[fend];
+		char* text = new char[fend];
 
 		input0.read(text, 24);
 
@@ -546,7 +546,7 @@ void CMFCApplication1Dlg::ExportBlk()
 			CopyTo = lvlData.start;
 			CopyTo2 = lvlData.endB;
 
-			if (!((CopyTo > fromP)&(CopyTo2 < toP)))
+			if (!((CopyTo > fromP) & (CopyTo2 < toP)))
 			{
 				fromP = CopyTo;
 				toP = CopyTo2;
@@ -604,7 +604,7 @@ void CMFCApplication1Dlg::AddMat()
 			input0.seekg(0, ios_base::end);
 			int fend = (int)input0.tellg();
 			input0.seekg(0, ios_base::beg);
-			char * text = new char[fend];
+			char* text = new char[fend];
 
 			input0.read(text, 12);
 			output.write(text, 12);
@@ -627,7 +627,7 @@ void CMFCApplication1Dlg::AddMat()
 			input0.read(text, (val - 1) * 32);
 			output.write(text, (val - 1) * 32);
 
-			char * mat1 = (LPSTR)(LPCSTR)mat.GetBuffer();
+			char* mat1 = (LPSTR)(LPCSTR)mat.GetBuffer();
 
 			CT2A ascii(mat);
 			output.write(ascii.m_psz, 32);
@@ -645,7 +645,7 @@ void CMFCApplication1Dlg::AddMat()
 			inputM.seekg(0, ios_base::end);
 			fend = (int)inputM.tellg();
 			inputM.seekg(0, ios_base::beg);
-			char * MainFile = new char[fend];
+			char* MainFile = new char[fend];
 			inputM.read(MainFile, fend);
 			ofstream tempFile(OPath, ios::binary);
 			tempFile.write(MainFile, fend);
@@ -701,7 +701,7 @@ void CMFCApplication1Dlg::RemBlk()
 			input0.seekg(0, ios_base::end);
 			int fend = (int)input0.tellg();
 			input0.seekg(0, ios_base::beg);
-			char * text = new char[fend * 2];
+			char* text = new char[fend * 2];
 			int fromP = 0, toP = 0;
 			for (int i = 0; i < items0.GetCount(); i++)
 			{
@@ -726,7 +726,7 @@ void CMFCApplication1Dlg::RemBlk()
 				}
 
 
-				if (!((CopyTo > fromP)&(CopyTo2 < toP)))
+				if (!((CopyTo > fromP) & (CopyTo2 < toP)))
 				{
 					fromP = CopyTo;
 					toP = CopyTo2;
@@ -763,21 +763,21 @@ void CMFCApplication1Dlg::RemBlk()
 		inputM.seekg(0, ios_base::end);
 		int fend = (int)inputM.tellg();
 		inputM.seekg(0, ios_base::beg);
-		char * MainFile = new char[fend];
+		char* MainFile = new char[fend];
 		inputM.read(MainFile, fend);
 		ofstream tempFile(OPath, ios::binary);
 		tempFile.write(MainFile, fend);
 		tempFile.close();
 		inputM.close();
 		m_treeCtrl.DeleteAllItems();
-		getStr(&m_treeCtrl, OPath,&itemArr);
+		getStr(&m_treeCtrl, OPath, &itemArr);
 		delete MainFile;
 	}
 }
 
 void CMFCApplication1Dlg::ReplBlk()
 {
-	if ((op0)&(op1))
+	if ((op0) & (op1))
 	{
 		CString OPath, tPath;
 		LPWSTR opathx = new TCHAR[255];
@@ -828,17 +828,17 @@ void CMFCApplication1Dlg::ReplBlk()
 			input1.seekg(0, ios_base::end);
 
 
-			char * text = new char[(int)input1.tellg()];
+			char* text = new char[(int)input1.tellg()];
 
 			input1.seekg(0, ios_base::beg);
 
 
 			int offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].start;//смещение начала блока
 
-			char * beg = new char[offset];
+			char* beg = new char[offset];
 
 
-			input0.read(beg, offset); 
+			input0.read(beg, offset);
 			output.write(beg, offset);
 			delete beg;
 
@@ -848,7 +848,7 @@ void CMFCApplication1Dlg::ReplBlk()
 			{
 
 				ITEMStruc data = itemArr1[(int)m_treeCtrl.GetItemData(items1[i])];
-				if (!((data.start > fromP)&(data.endB < toP)))
+				if (!((data.start > fromP) & (data.endB < toP)))
 				{
 					input1.seekg(data.start, ios_base::beg);
 					input1.read(text, data.endB - data.start);
@@ -861,8 +861,8 @@ void CMFCApplication1Dlg::ReplBlk()
 
 			offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].endB;//смещение конца блока
 			input0.seekg(offset, ios_base::beg);
-				
-			char * end = new char[fend - offset];
+
+			char* end = new char[fend - offset];
 			input0.read(end, fend - offset);
 			output.write(end, fend - offset);
 			delete end;
@@ -882,7 +882,7 @@ void CMFCApplication1Dlg::ReplBlk()
 		inputM.seekg(0, ios_base::end);
 		int fend = (int)inputM.tellg();
 		inputM.seekg(0, ios_base::beg);
-		char * MainFile = new char[fend];
+		char* MainFile = new char[fend];
 		inputM.read(MainFile, fend);
 		ofstream tempFile(OPath, ios::binary);
 		tempFile.write(MainFile, fend);
@@ -904,156 +904,156 @@ void CMFCApplication1Dlg::ReplBlk()
 
 void CMFCApplication1Dlg::CopyBlk()
 {
-	if ((op0)&(op1))
+	if ((op0) & (op1))
 	{
-	CString OPath, tPath;
-	LPWSTR opathx = new TCHAR[255];
-	GetTempPath(255, opathx);
-	OPath = (LPWSTR)(LPCWSTR)opathx;
-	OPath = OPath + L"b3d.temp1";
+		CString OPath, tPath;
+		LPWSTR opathx = new TCHAR[255];
+		GetTempPath(255, opathx);
+		OPath = (LPWSTR)(LPCWSTR)opathx;
+		OPath = OPath + L"b3d.temp1";
 
 
-	tPath = OPath;
-	tPath.Delete(OPath.GetLength() - 1, 1);
-	tPath.Append(L"2");
+		tPath = OPath;
+		tPath.Delete(OPath.GetLength() - 1, 1);
+		tPath.Append(L"2");
 
 
-	CArray<HTREEITEM> items0, items1;
-	GetCheckedItems(m_treeCtrl, &items0, NULL);
-	GetCheckedItems(m_treeCtrl1, &items1, NULL);
+		CArray<HTREEITEM> items0, items1;
+		GetCheckedItems(m_treeCtrl, &items0, NULL);
+		GetCheckedItems(m_treeCtrl1, &items1, NULL);
 
 
-	ifstream input0(OPath, ios::binary);
-	ifstream input1(Path1, ios::binary);
+		ifstream input0(OPath, ios::binary);
+		ifstream input1(Path1, ios::binary);
 
-	CString msg0, msg1;
-
-	
-	msg0.Append(L"Куда:\n");
+		CString msg0, msg1;
 
 
-	msg0.Append((m_treeCtrl.GetItemText(items0[0]) + "\n"));
-
-	msg0.Append(L"Блоки:\n");
-	for (int i = 0; i < items1.GetCount(); i++)
-	{
-		msg0.Append((m_treeCtrl.GetItemText(items1[i]) + "\n"));
-	}
-	
-
-	int MsgResult = MessageBox(msg0, _T("item?"), MB_OKCANCEL);
-	switch (MsgResult)
-	{
-	case IDOK:
-	{
-		ofstream output(tPath, ios::binary);
-		CString in0, in1, in2, in3;
-		input0.seekg(0, ios_base::end);
-		int fend = (int)input0.tellg();
-		input0.seekg(0, ios_base::beg);
-
-		input1.seekg(0, ios_base::end);
+		msg0.Append(L"Куда:\n");
 
 
-		char * text = new char[(int)input1.tellg()];
+		msg0.Append((m_treeCtrl.GetItemText(items0[0]) + "\n"));
 
-		input1.seekg(0, ios_base::beg);
-
-
-		msg0 = L"Скопировать внутрь блока?";
-
-		MsgResult = MessageBox(msg0, _T("Копир"), MB_YESNO);
-		int offset;
-
-		if (MsgResult == IDYES)
-		{
-			offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].end;//смещение блока к концу
-		}
-		else
-		{
-			offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].start;//смещение начала блока
-		}
-		//----
-		char * beg = new char[offset];
-		//----
-		/*
-		input0.read(text, offset);
-		output.write(text, offset);
-		*/
-		input0.read(beg, offset);
-		output.write(beg, offset);
-		delete beg;
-
-		int fromP = 0, toP = 0;
-
+		msg0.Append(L"Блоки:\n");
 		for (int i = 0; i < items1.GetCount(); i++)
 		{
-
-			ITEMStruc data = itemArr1[(int)m_treeCtrl.GetItemData(items1[i])];
-			if (!((data.start > fromP)&(data.endB < toP)))
-			{
-				input1.seekg(data.start, ios_base::beg);
-				input1.read(text, data.endB - data.start);
-				output.write(text, data.endB - data.start);
-				fromP = data.start;
-				toP = data.endB;
-			}
-
+			msg0.Append((m_treeCtrl.GetItemText(items1[i]) + "\n"));
 		}
 
 
+		int MsgResult = MessageBox(msg0, _T("item?"), MB_OKCANCEL);
+		switch (MsgResult)
+		{
+		case IDOK:
+		{
+			ofstream output(tPath, ios::binary);
+			CString in0, in1, in2, in3;
+			input0.seekg(0, ios_base::end);
+			int fend = (int)input0.tellg();
+			input0.seekg(0, ios_base::beg);
+
+			input1.seekg(0, ios_base::end);
 
 
-		char * end = new char[fend - offset];
-		input0.read(end, fend - offset);
-		output.write(end, fend - offset);
-		delete end;
+			char* text = new char[(int)input1.tellg()];
 
-		output.close();
-		input0.close();
-		input1.close();
-		delete text;
-
-	}
-	case IDCANCEL:
-		break;
-	}
-
-	ifstream inputM(tPath, ios::binary);
-
-	inputM.seekg(0, ios_base::end);
-	int fend = (int)inputM.tellg();
-	inputM.seekg(0, ios_base::beg);
-	char * MainFile = new char[fend];
-	inputM.read(MainFile, fend);
-	ofstream tempFile(OPath, ios::binary);
-	tempFile.write(MainFile, fend);
-	tempFile.close();
-	inputM.close();
-
-	m_treeCtrl.DeleteAllItems();
-	getStr(&m_treeCtrl, OPath,&itemArr);
+			input1.seekg(0, ios_base::beg);
 
 
+			msg0 = L"Скопировать внутрь блока?";
 
-	delete MainFile;
-	delete [] opathx;
+			MsgResult = MessageBox(msg0, _T("Копир"), MB_YESNO);
+			int offset;
+
+			if (MsgResult == IDYES)
+			{
+				offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].end;//смещение блока к концу
+			}
+			else
+			{
+				offset = itemArr[(int)m_treeCtrl.GetItemData(items0[0])].start;//смещение начала блока
+			}
+			//----
+			char* beg = new char[offset];
+			//----
+			/*
+			input0.read(text, offset);
+			output.write(text, offset);
+			*/
+			input0.read(beg, offset);
+			output.write(beg, offset);
+			delete beg;
+
+			int fromP = 0, toP = 0;
+
+			for (int i = 0; i < items1.GetCount(); i++)
+			{
+
+				ITEMStruc data = itemArr1[(int)m_treeCtrl.GetItemData(items1[i])];
+				if (!((data.start > fromP) & (data.endB < toP)))
+				{
+					input1.seekg(data.start, ios_base::beg);
+					input1.read(text, data.endB - data.start);
+					output.write(text, data.endB - data.start);
+					fromP = data.start;
+					toP = data.endB;
+				}
+
+			}
+
+
+
+
+			char* end = new char[fend - offset];
+			input0.read(end, fend - offset);
+			output.write(end, fend - offset);
+			delete end;
+
+			output.close();
+			input0.close();
+			input1.close();
+			delete text;
+
+		}
+		case IDCANCEL:
+			break;
+		}
+
+		ifstream inputM(tPath, ios::binary);
+
+		inputM.seekg(0, ios_base::end);
+		int fend = (int)inputM.tellg();
+		inputM.seekg(0, ios_base::beg);
+		char* MainFile = new char[fend];
+		inputM.read(MainFile, fend);
+		ofstream tempFile(OPath, ios::binary);
+		tempFile.write(MainFile, fend);
+		tempFile.close();
+		inputM.close();
+
+		m_treeCtrl.DeleteAllItems();
+		getStr(&m_treeCtrl, OPath, &itemArr);
+
+
+
+		delete MainFile;
+		delete[] opathx;
 
 	}
 }
 
 
-void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITEMStruc, ITEMStruc> * itemArray)
+void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITEMStruc, ITEMStruc>* itemArray)
 {
 	char b3dSig[4];
 	ifstream input(pathname, ios::binary);
 
 	input.read(b3dSig, 4);
-	
 
 
-	
-	if (((b3dSig[0] == *"b")|| (b3dSig[0] == *"B"))& (b3dSig[1] == *"3")& ((b3dSig[2] == *"d")|| (b3dSig[2] == *"D"))& (b3dSig[3] == *"\0"))
+
+
+	if (((b3dSig[0] == *"b") || (b3dSig[0] == *"B")) & (b3dSig[1] == *"3") & ((b3dSig[2] == *"d") || (b3dSig[2] == *"D")) & (b3dSig[3] == *"\0"))
 	{
 		input.seekg(20, ios::cur);
 		int texNum, _case, type, i_null;
@@ -1070,7 +1070,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 		{
 			input.read((char*)&texture, 32);
 			CString msg;
-			msg.Format(_T("%d. %S"), i,texture);
+			msg.Format(_T("%d. %S"), i, texture);
 			pCtrl1->InsertItem(msg, hMat);
 			//log << texture << endl;
 		}
@@ -1081,7 +1081,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 		vector <int> objString;
 		vector <HTREEITEM> objects;
 
-		int lvl = 0,objIter = 0;
+		int lvl = 0, objIter = 0;
 
 
 		for (;;)
@@ -1097,7 +1097,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				int a = objectStr.GetSize() - 1;
 				int x = objectStr.ElementAt(a);
-				
+
 				ITEMStruc pItem = itemArray->GetAt(x);
 				pItem.endB = (int)input.tellg();
 
@@ -1124,8 +1124,8 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 					strcpy_s(objName, "Untitled");
 				}
 
-				CString msg,intM;
-				int tell,tell1;
+				CString msg, intM;
+				int tell, tell1;
 				tell = (int)input.tellg();
 				tell = tell - 36;
 				input.read(reinterpret_cast<char*>(&type), sizeof(int));
@@ -1141,11 +1141,10 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				else
 				{
 					int lastObj = objectStr.ElementAt(objectStr.GetSize() - 1);
-					//int lastObj = objString.back();
 					objectTree = objects.at(lastObj);
 
 				}
-			
+				IBlock *block = nullptr;
 
 				if (type == 0)
 				{
@@ -1169,16 +1168,14 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				else if (type == 4)
 				{
-					input.seekg(16, ios::cur);
-					input.seekg(32, ios::cur);
-					input.seekg(36, ios::cur);
+					block = new Block04();
+					block->Read(input);
 
 				}
 				else if (type == 5)
 				{
-					input.seekg(16, ios::cur);
-					input.seekg(32, ios::cur);
-					input.seekg(4, ios::cur);
+					block = new Block05();
+					block->Read(input);
 
 				}
 				else if (type == 6)
@@ -1623,7 +1620,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				////
 
 				tell1 = (int)input.tellg();
-				
+
 				msg.Format(_T("%S (%d)"), objName, type);
 				HTREEITEM objectTreeCur = (pCtrl1->InsertItem(msg, objectTree));
 
@@ -1647,12 +1644,12 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 
 				HTREEITEM ItemBack = pCtrl1->GetParentItem(objectTreeCur);
 
-				ITEMStruc * lvlData = (ITEMStruc *)pCtrl1->GetItemData(objectTreeCur);
+				ITEMStruc* lvlData = (ITEMStruc*)pCtrl1->GetItemData(objectTreeCur);
 				DWORD_PTR lvData = (DWORD_PTR)pCtrl1->GetItemData(objectTreeCur);
 
-				ITEMStruc * lvlData1 = (ITEMStruc *)pCtrl1 -> GetItemData(ItemBack);
+				ITEMStruc* lvlData1 = (ITEMStruc*)pCtrl1->GetItemData(ItemBack);
 				DWORD_PTR lvData1 = (DWORD_PTR)pCtrl1->GetItemData(ItemBack);
-				
+
 
 				objects.push_back(objectTreeCur);
 
@@ -1676,13 +1673,13 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				MessageBox(_T("Case Error"), _T("b3dSig?"), NULL);
 				break;
 			}
-			
+
 		}
-		
+
 		input.close();
 		//log.close();
 		//return texture;
-		
+
 	}
 	else
 	{
@@ -1690,10 +1687,10 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 		msg.Format(_T("%S"), b3dSig);
 		MessageBox(_T("B3D is unknown"), _T("b3dbad"), NULL);
 	}
-	
+
 }
 
-void CMFCApplication1Dlg::OnTvnSelchangedTree2(NMHDR *pNMHDR, LRESULT *pResult)
+void CMFCApplication1Dlg::OnTvnSelchangedTree2(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
 	// TODO: добавьте свой код обработчика уведомлений
@@ -1701,7 +1698,7 @@ void CMFCApplication1Dlg::OnTvnSelchangedTree2(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 
-void CMFCApplication1Dlg::OnTvnSelchangedTree1(NMHDR *pNMHDR, LRESULT *pResult)
+void CMFCApplication1Dlg::OnTvnSelchangedTree1(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
 
@@ -1711,7 +1708,7 @@ void CMFCApplication1Dlg::OnTvnSelchangedTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 
-void CMFCApplication1Dlg::GetCheckedItems(const CTreeCtrl& tree, CArray<HTREEITEM> *checkedItems, HTREEITEM startItem = NULL)
+void CMFCApplication1Dlg::GetCheckedItems(const CTreeCtrl& tree, CArray<HTREEITEM>* checkedItems, HTREEITEM startItem = NULL)
 {
 	if (startItem == NULL)
 		startItem = tree.GetRootItem();
@@ -1743,7 +1740,7 @@ void CMFCApplication1Dlg::GetCheckedItems(const CTreeCtrl& tree, CArray<HTREEITE
 
 
 
-void CMFCApplication1Dlg::OnNMClickTree1(NMHDR *pNMHDR, LRESULT *pResult)
+void CMFCApplication1Dlg::OnNMClickTree1(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	CPoint    point;
 	UINT      uFlags;
@@ -1771,7 +1768,7 @@ void CMFCApplication1Dlg::OnNMClickTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 			// ...and so on
 		}
-	}	
+	}
 
 	*pResult = 0;
 }
@@ -1794,7 +1791,7 @@ void CMFCApplication1Dlg::CheckSiblings(CTreeCtrl& tree, BOOL bCheck, HTREEITEM 
 	}
 }
 
-void CMFCApplication1Dlg::OnNMClickTree2(NMHDR *pNMHDR, LRESULT *pResult)
+void CMFCApplication1Dlg::OnNMClickTree2(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	CPoint    point;
 	UINT      uFlags;
@@ -1850,7 +1847,7 @@ void CMFCApplication1Dlg::Save()
 	tempFile.seekg(0, ios_base::end);
 	int fend = (int)tempFile.tellg();
 	tempFile.seekg(0, ios_base::beg);
-	char * MainFile = new char[fend];
+	char* MainFile = new char[fend];
 
 	tempFile.read(MainFile, fend);
 
@@ -1865,11 +1862,11 @@ void CMFCApplication1Dlg::Save()
 }
 
 
-void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
+void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	HTREEITEM item = m_treeCtrl.GetSelectedItem();
 	int numIt = (int)m_treeCtrl.GetItemData(item);
-	
+
 	ITEMStruc itemS = itemArr[numIt];
 
 	CString OPath, tPath;
@@ -1889,9 +1886,9 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 	input0.seekg(0, ios_base::end);
 	int fend = (int)input0.tellg();
 	input0.seekg(0, ios_base::beg);
-	char * MainFile = new char[fend];
+	char* MainFile = new char[fend];
 
-	
+
 	input0.read(MainFile, itemS.start + 4);//читать с 4d01
 	output0.write(MainFile, itemS.start + 4);
 	CAddMat dialog;
@@ -1906,7 +1903,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 	dialog.m_caption = L"Свойства блока";
 
 
-	
+
 	if (itemS.type == 5)
 	{
 
@@ -2034,7 +2031,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		int iNum;
 		CString str;
 
-		buttonAdd edit,cap;
+		buttonAdd edit, cap;
 
 		input0.seekg(4, ios_base::cur);
 
@@ -2137,7 +2134,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 			for (int i = 0; i < 3; i++)
 			{
-				iNum = (int)_ttoi(dialog.captions[i+8]);
+				iNum = (int)_ttoi(dialog.captions[i + 8]);
 				output0.write(reinterpret_cast<char*>(&iNum), sizeof(int));
 			}
 
@@ -2163,14 +2160,14 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		dialog.WinSize = CRect(left, top, left + 210, top + 235);
 
 
-		buttonAdd edit,cap;
+		buttonAdd edit, cap;
 
 		cap.caption = L"Обьект:";
 		cap.Rectangle = CRect(11, 75, 180, 92);
 		dialog.NewCap.Add(cap);
 
 
-		input0.seekg(20,ios_base::cur);
+		input0.seekg(20, ios_base::cur);
 		input0.read((char*)&objName, 32);
 
 		edit.caption = objName;
@@ -2267,12 +2264,12 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		top = wR.top + (wR.Width() / 2) - 300 / 2;
 		dialog.WinSize = CRect(left, top, left + 210, top + 300);
 
-		buttonAdd edit,cap;
+		buttonAdd edit, cap;
 		float num;
 		CString str;
 
 		input0.seekg(4, ios_base::cur);
-		
+
 		cap.caption = L"Матрица преобразования:";
 		cap.Rectangle = CRect(11, 70, 180, 92);
 		dialog.NewCap.Add(cap);
@@ -2328,8 +2325,8 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		if (dialog.DoModal() == IDOK)
 		{
 			reload = TRUE;
-			str =  dialog.GetValue();
-			strcpy_s(objName,32, CT2A(str));
+			str = dialog.GetValue();
+			strcpy_s(objName, 32, CT2A(str));
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2362,7 +2359,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		float fNum;
 		int iNum;
 		CString str;
-		char * posns = new char[16];
+		char* posns = new char[16];
 
 		input0.seekg(4, ios_base::cur);
 		input0.read(posns, 16);
@@ -2435,7 +2432,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 			for (int i = 0; i < 15; i++)
 			{
-				fNum = (float)_ttof(dialog.captions[i+3]);
+				fNum = (float)_ttof(dialog.captions[i + 3]);
 				output0.write(reinterpret_cast<char*>(&fNum), sizeof(float));
 			}
 
@@ -2593,19 +2590,19 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		edit.caption = str;
 		edit.Rectangle = CRect(117, 260, 180, 280);
 		dialog.NewEdit.Add(edit);
-		
+
 		int pCount = iNum;
-		
+
 		int hPos = 281;
 		int wPos = 11;
 		int j = 0;
 
-		for (int i = 0; i < pCount-2; i++)
+		for (int i = 0; i < pCount - 2; i++)
 		{
 			input0.read(reinterpret_cast<char*>(&fNum), sizeof(float));
 			str.Format(L"%.4f", fNum);
 			edit.caption = str;
-			edit.Rectangle = CRect(wPos, hPos, wPos+47, hPos + 20);
+			edit.Rectangle = CRect(wPos, hPos, wPos + 47, hPos + 20);
 			dialog.NewEdit.Add(edit);
 
 			wPos += 49;
@@ -2636,8 +2633,8 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 		left = wR.left + (wR.Height() / 2) - 210 / 2;
-		top = wR.top + (wR.Width() / 2) - (hPos+100) / 2;
-		dialog.WinSize = CRect(left, top, left + 210, top + (hPos+100));
+		top = wR.top + (wR.Width() / 2) - (hPos + 100) / 2;
+		dialog.WinSize = CRect(left, top, left + 210, top + (hPos + 100));
 
 		if (dialog.DoModal() == IDOK)
 		{
@@ -2667,12 +2664,12 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 			for (int i = 0; i < 3; i++)
 			{
-				iNum = (int)_ttoi(dialog.captions[i+6]);
+				iNum = (int)_ttoi(dialog.captions[i + 6]);
 				output0.write(reinterpret_cast<char*>(&iNum), sizeof(int));
 			}
 
 
-			for (int i = 0; i < pCount-2; i++)
+			for (int i = 0; i < pCount - 2; i++)
 			{
 				fNum = (float)_ttof(dialog.captions[i + 9]);
 				output0.write(reinterpret_cast<char*>(&fNum), sizeof(float));
@@ -2680,7 +2677,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 
 			for (int i = 0; i < 2; i++)
 			{
-				iNum = (int)_ttoi(dialog.captions[i + 9+pCount-2]);
+				iNum = (int)_ttoi(dialog.captions[i + 9 + pCount - 2]);
 				output0.write(reinterpret_cast<char*>(&iNum), sizeof(int));
 			}
 
@@ -2701,8 +2698,8 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 		CRect wR;
 		this->GetWindowRect(&wR);
 		int left, top;
-		left = wR.left + (wR.Height() / 2) - 210/2;
-		top = wR.top + (wR.Width() / 2) - 150/2;
+		left = wR.left + (wR.Height() / 2) - 210 / 2;
+		top = wR.top + (wR.Width() / 2) - 150 / 2;
 		dialog.WinSize = CRect(left, top, left + 210, top + 150);
 
 		if (dialog.DoModal() == IDOK)
@@ -2716,8 +2713,8 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult)
 			output0.write(objName, 32);
 
 
-			input0.read(MainFile, fend - itemS.start-36);
-			output0.write(MainFile, fend - itemS.start-3);
+			input0.read(MainFile, fend - itemS.start - 36);
+			output0.write(MainFile, fend - itemS.start - 3);
 		}
 
 
