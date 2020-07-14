@@ -1376,7 +1376,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				else if (type == 28)
 				{
-					block = new Block14();
+					block = new Block28();
 
 					block->Read(input);
 

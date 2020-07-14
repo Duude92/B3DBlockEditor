@@ -101,5 +101,5 @@ void Block28::Read(std::ifstream& input)
 		}
 
 	}
-
+	Dispose();
 }

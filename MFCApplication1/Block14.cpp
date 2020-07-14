@@ -34,4 +34,5 @@ void Block14::Read(std::ifstream& input)
 
 		input.seekg(skip_len, ios::cur);
 	}
+	Dispose();
 }
