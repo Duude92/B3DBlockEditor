@@ -12,6 +12,10 @@
 #include "IBlock.h"
 #include "Block05.h"
 #include "Block04.h"
+#include "Block14.h"
+#include "Block28.h"
+#include "Block29.h"
+#include "Block31.h"
 
 
 // CMFCApplication1App:

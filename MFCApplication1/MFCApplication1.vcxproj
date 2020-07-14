@@ -190,6 +190,10 @@
     <ClInclude Include="AddMat.h" />
     <ClInclude Include="Block04.h" />
     <ClInclude Include="Block05.h" />
+    <ClInclude Include="Block14.h" />
+    <ClInclude Include="Block28.h" />
+    <ClInclude Include="Block29.h" />
+    <ClInclude Include="Block31.h" />
     <ClInclude Include="IBlock.h" />
     <ClInclude Include="MFCApplication1.h" />
     <ClInclude Include="MFCApplication1Dlg.h" />
@@ -201,6 +205,10 @@
     <ClCompile Include="AddMat.cpp" />
     <ClCompile Include="Block04.cpp" />
     <ClCompile Include="Block05.cpp" />
+    <ClCompile Include="Block14.cpp" />
+    <ClCompile Include="Block28.cpp" />
+    <ClCompile Include="Block29.cpp" />
+    <ClCompile Include="Block31.cpp" />
     <ClCompile Include="IBlock.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />
     <ClCompile Include="MFCApplication1Dlg.cpp" />

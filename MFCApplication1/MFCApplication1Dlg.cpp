@@ -113,6 +113,9 @@ LRESULT CMFCApplication1Dlg::CloseApp(WPARAM wParam, LPARAM lParam)
 	UnregisterHotKey(GetSafeHwnd(), 100);
 	UnregisterHotKey(GetSafeHwnd(), 200);
 	UnregisterHotKey(GetSafeHwnd(), 300);
+	UnregisterHotKey(GetSafeHwnd(), 400);
+	UnregisterHotKey(GetSafeHwnd(), 450);
+	UnregisterHotKey(GetSafeHwnd(), 500);
 	DestroyWindow();
 	return 0;
 }
@@ -1144,7 +1147,7 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 					objectTree = objects.at(lastObj);
 
 				}
-				IBlock *block = nullptr;
+				IBlock* block = nullptr;
 
 				if (type == 0)
 				{
@@ -1225,14 +1228,14 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 								input.seekg(12, ios::cur);
 							}
 						}
-						else if ((format == 176) || (format == 48) || (format == 179) || (format == 51))
+						else if ((format == 176) || (format == 48) || (format == 179) || (format == 51) || (format == 24))
 						{
 							for (int j = 0; j < i_null1; j++)
 							{
 								input.seekg(16, ios::cur);
 							}
 						}
-						else if ((format == 177))
+						else if ((format == 177) || (format == 49))
 						{
 							for (int j = 0; j < i_null1; j++)
 							{
@@ -1260,6 +1263,11 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 					input.seekg(16, ios::cur);
 					input.seekg(4, ios::cur);
 				}
+
+				else if (type == 11)
+				{
+					input.seekg(52, ios::cur);
+				}
 				else if (type == 12)
 				{
 					input.seekg(16, ios::cur);
@@ -1277,10 +1285,11 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				else if (type == 14)
 				{
-					input.seekg(16, ios::cur);
-					input.seekg(16, ios::cur);
-					input.seekg(4, ios::cur);
-					input.seekg(8, ios::cur);
+					block = new Block14();
+
+					((Block14*)block)->objName = objName;  //Должно работать, но не обязательно будет, нужно проверить
+					block->Read(input);
+
 				}
 				else if (type == 16)
 				{
@@ -1361,71 +1370,70 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 					input.seekg(4, ios::cur);
 					input.seekg(40, ios::cur);
 				}
+				else if (type == 27)
+				{
+					input.seekg(36, ios::cur);
+				}
 				else if (type == 28)
 				{
-					input.seekg(16, ios::cur);
-					input.seekg(12, ios::cur);
-					input.read(reinterpret_cast<char*>(&i_null), sizeof(int));
-					int i_null1, i_null2;
+					block = new Block14();
 
-					if (i_null == 1)
-					{
-						input.read(reinterpret_cast<char*>(&i_null1), sizeof(int));
-						input.seekg(12, ios::cur);
-						input.read(reinterpret_cast<char*>(&i_null2), sizeof(int));
+					block->Read(input);
 
-						if (i_null1 > 1)
-						{
-							for (int i = 0; i < i_null2; i++)
-							{
-								input.seekg(16, ios::cur);
-							}
-						}
-						else
-						{
-							input.seekg(32, ios::cur);
-						}
-					}
-					else if (i_null == 2)
-					{
-						input.seekg(20, ios::cur);
-						for (int i = 0; i < 4; i++)
-						{
-							input.seekg(28, ios::cur);
-						}
-						//input.read(reinterpret_cast<char*>(&testkey), sizeof(int));
+					//После всего, что между нами было, как я могу не сохранить данный кусочек сладкого кода
+					//input.seekg(16, ios::cur);
+					//input.seekg(12, ios::cur);
+					//input.read(reinterpret_cast<char*>(&i_null), sizeof(int));
+					//int i_null1, i_null2;
 
-						input.seekg(4, ios::cur);
-					}
-					else if ((i_null == 10) || (i_null == 6))
-					{
-						for (int i = 0; i < i_null1; i++)
-						{
-							input.seekg(16, ios::cur);
-							input.read(reinterpret_cast<char*>(&i_null2), sizeof(int));
-							for (int j = 0; j < i_null2; j++)
-							{
-								input.seekg(8, ios::cur);
-							}
-						}
-					}
+					//if (i_null == 1)
+					//{
+					//	input.read(reinterpret_cast<char*>(&i_null1), sizeof(int));
+					//	input.seekg(12, ios::cur);
+					//	input.read(reinterpret_cast<char*>(&i_null2), sizeof(int));
+
+					//	if (i_null1 > 1)
+					//	{
+					//		for (int i = 0; i < i_null2; i++)
+					//		{
+					//			input.seekg(16, ios::cur);
+					//		}
+					//	}
+					//	else
+					//	{
+					//		input.seekg(32, ios::cur);
+					//	}
+					//}
+					//else if (i_null == 2)
+					//{
+					//	input.seekg(20, ios::cur);
+					//	for (int i = 0; i < 4; i++)
+					//	{
+					//		input.seekg(28, ios::cur);
+					//	}
+					//	//input.read(reinterpret_cast<char*>(&testkey), sizeof(int));
+
+					//	input.seekg(4, ios::cur);
+					//}
+					//else if ((i_null == 10) || (i_null == 6))
+					//{
+					//	for (int i = 0; i < i_null1; i++)
+					//	{
+					//		input.seekg(16, ios::cur);
+					//		input.read(reinterpret_cast<char*>(&i_null2), sizeof(int));
+					//		for (int j = 0; j < i_null2; j++)
+					//		{
+					//			input.seekg(8, ios::cur);
+					//		}
+					//	}
+					//}
 
 				}
 				else if (type == 29)
 				{
-					input.seekg(16, ios::cur);
-					input.read(reinterpret_cast<char*>(&i_null), sizeof(int));
-					input.seekg(4, ios::cur);
-					input.seekg(28, ios::cur);
-					if (i_null == 4)
-					{
-						input.seekg(4, ios::cur);
-					}
-					else
-					{
-						;
-					}
-					input.seekg(4, ios::cur);
+					block = new Block29();
+
+					block->Read(input);
 				}
 				else if (type == 30)
 				{
@@ -1435,14 +1443,10 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				else if (type == 31)
 				{
-					input.seekg(16, ios::cur);
-					input.seekg(20, ios::cur);
-					input.seekg(20, ios::cur);
-					for (int i = 0; i < 27; i++)
-					{
-						input.seekg(8, ios::cur);
-					}
-					input.seekg(4, ios::cur);
+				block = new Block31();
+
+				block->Read(input);
+
 				}
 				else if (type == 33)
 				{
