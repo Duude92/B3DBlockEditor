@@ -43,3 +43,5 @@
 *.opendb
 *.db-wal
 *.db-shm
+/Release/B3D Block Editor.iobj
+/Release/B3D Block Editor.ipdb

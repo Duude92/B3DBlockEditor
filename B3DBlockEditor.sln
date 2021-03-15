@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MFCApplication1", "MFCApplication1\MFCApplication1.vcxproj", "{C94FB316-6B52-484A-9ECC-E46C4AB543F2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "B3DBlockEditor", "MFCApplication1\MFCApplication1.vcxproj", "{C94FB316-6B52-484A-9ECC-E46C4AB543F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C094256-85A7-4B26-85CA-B3315AB087AE}
 	EndGlobalSection
 EndGlobal
