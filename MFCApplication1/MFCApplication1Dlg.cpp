@@ -184,6 +184,7 @@ void CMFCApplication1Dlg::ADD05()
 
 			CString str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			ofstream output(tPath, ios::binary);
 			CString in0, in1, in2, in3;
@@ -572,6 +573,14 @@ void CMFCApplication1Dlg::ExportBlk()
 }
 
 
+void CMFCApplication1Dlg::ClearEmptySymbols(char* input)
+{
+	int ascii_len = strlen(input);
+	char* empty_line = input;
+	empty_line += ascii_len;
+	memset(empty_line, '\0', 32 - ascii_len);
+}
+
 
 
 void CMFCApplication1Dlg::AddMat()
@@ -630,10 +639,19 @@ void CMFCApplication1Dlg::AddMat()
 			input0.read(text, (val - 1) * 32);
 			output.write(text, (val - 1) * 32);
 
-			char* mat1 = (LPSTR)(LPCSTR)mat.GetBuffer();
+			LPWSTR lMat = mat.GetBuffer();
 
-			CT2A ascii(mat);
-			output.write(ascii.m_psz, 32);
+			char ascii_char[32];
+			wcstombs_s(NULL, ascii_char, 32, lMat, 32);
+
+			ClearEmptySymbols((char*)&ascii_char);
+
+			//int ascii_len = strlen(ascii_char);
+			//char* empty_line = (char*)&ascii_char;
+			//empty_line += ascii_len;
+			//memset(empty_line, '\0', 32 - ascii_len);
+
+			output.write(ascii_char, 32);
 
 			int size = fend - (int)input0.tellg();
 			input0.read(text, size);
@@ -1990,7 +2008,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
-
+			ClearEmptySymbols((char*)&objName);
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
 
@@ -2125,6 +2143,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2197,6 +2216,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			reload = TRUE;
 			strcpy_s(objName, CT2A(dialog.GetValue()));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			CString str;
@@ -2245,6 +2265,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2331,6 +2352,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2422,6 +2444,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2488,6 +2511,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			reload = TRUE;
 			strcpy_s(objName, CT2A(dialog.GetValue()));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			CString str;
@@ -2645,6 +2669,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			reload = TRUE;
 			str = dialog.GetValue();
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
 
 			output0.write(objName, 32);
 			output0.write(reinterpret_cast<char*>(&itemS.type), sizeof(int));
@@ -2657,10 +2682,14 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 
 			str = dialog.captions[4];
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
+
 			output0.write(objName, 32);
 
 			str = dialog.captions[5];
 			strcpy_s(objName, 32, CT2A(str));
+			ClearEmptySymbols((char*)&objName);
+
 			output0.write(objName, 32);
 
 
@@ -2712,6 +2741,7 @@ void CMFCApplication1Dlg::OnNMDblclkTree1(NMHDR* pNMHDR, LRESULT* pResult)
 
 			strcpy_s(objName, CT2A(dialog.GetValue()));
 
+			ClearEmptySymbols((char*)&objName);
 
 
 			output0.write(objName, 32);

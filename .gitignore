@@ -39,3 +39,7 @@
 *.idb
 *.ilk
 *.pchast
+/MFCApplication1/Debug/B3D Editor.exe.recipe
+*.opendb
+*.db-wal
+*.db-shm

@@ -65,4 +65,6 @@ public:
 	afx_msg void AboutBox();
 	afx_msg void OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg LRESULT CloseApp(WPARAM wParam, LPARAM lParam);
+	void ClearEmptySymbols(char* input);
+
 };
