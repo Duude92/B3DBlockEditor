@@ -39,6 +39,7 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg LRESULT OnHotKey(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
+	HTREEITEM FindItem(const CString& name, CTreeCtrl& tree, HTREEITEM hRoot);
 public:
 	afx_msg void OpenFile1();
 	CArray<ITEMStruc, ITEMStruc> itemArr;
@@ -65,6 +66,7 @@ public:
 	afx_msg void AboutBox();
 	afx_msg void OnNMDblclkTree1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg LRESULT CloseApp(WPARAM wParam, LPARAM lParam);
+	afx_msg void SearchBlk();
 	void ClearEmptySymbols(char* input);
 
 };

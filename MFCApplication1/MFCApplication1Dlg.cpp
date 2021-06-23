@@ -100,6 +100,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_COMMAND(ID_APP_ABOUT, &CMFCApplication1Dlg::AboutBox)
 	ON_COMMAND(ID_NEW05, &CMFCApplication1Dlg::ADD05)
 	ON_COMMAND(ID_REPL, &CMFCApplication1Dlg::ReplBlk)
+	ON_COMMAND(ID_SEARCH, &CMFCApplication1Dlg::SearchBlk)
 	ON_NOTIFY(NM_DBLCLK, IDC_TREE1, &CMFCApplication1Dlg::OnNMDblclkTree1)
 	ON_MESSAGE(WM_CLOSE, CloseApp)
 	ON_MESSAGE(WM_HOTKEY, OnHotKey)
@@ -119,6 +120,70 @@ LRESULT CMFCApplication1Dlg::CloseApp(WPARAM wParam, LPARAM lParam)
 	DestroyWindow();
 	return 0;
 }
+
+void CMFCApplication1Dlg::SearchBlk()
+{
+	CAddMat dialog;
+
+	char objName[32];
+
+
+
+
+	dialog.m_text = L"Имя блока:";
+	dialog.m_caption = L"Поиск";
+
+	if (dialog.DoModal() == IDOK)
+	{
+		CString str = dialog.GetValue();
+		strcpy_s(objName, 32, CT2A(str));
+		ClearEmptySymbols((char*)&objName);
+
+
+		HTREEITEM root = m_treeCtrl.GetRootItem();
+		while (root != NULL)
+		{
+			HTREEITEM hFound = FindItem(str, m_treeCtrl, root);
+			if (hFound)
+				m_treeCtrl.SelectItem(hFound);
+
+			//return hFound;
+
+			root = m_treeCtrl.GetNextSiblingItem(root);
+		}
+
+		//return NULL;
+
+	}
+
+
+}
+
+HTREEITEM CMFCApplication1Dlg::FindItem(const CString& name, CTreeCtrl& tree, HTREEITEM hRoot)
+{
+	// check whether the current item is the searched one
+	CString text = tree.GetItemText(hRoot);
+	if(text.Find(name,0) != std::string::npos)
+		return hRoot;
+
+	// get a handle to the first child item
+	HTREEITEM hSub = tree.GetChildItem(hRoot);
+	// iterate as long a new item is found
+	while (hSub)
+	{
+		// check the children of the current item
+		HTREEITEM hFound = FindItem(name, tree, hSub);
+		if (hFound)
+			return hFound;
+
+		// get the next sibling of the current item
+		hSub = tree.GetNextSiblingItem(hSub);
+	}
+
+	// return NULL if nothing was found
+	return NULL;
+}
+
 
 LRESULT CMFCApplication1Dlg::OnHotKey(WPARAM wParam, LPARAM lParam)
 {
@@ -1461,9 +1526,9 @@ void CMFCApplication1Dlg::getStr(CTreeCtrl* pCtrl1, LPCTSTR pathname, CArray<ITE
 				}
 				else if (type == 31)
 				{
-				block = new Block31();
+					block = new Block31();
 
-				block->Read(input);
+					block->Read(input);
 
 				}
 				else if (type == 33)
